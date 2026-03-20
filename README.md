@@ -21,5 +21,5 @@ AI: OpenAI API with JSON schema
 Storage: AWS S3
 Testing: Vitest (10 tests, 100% type coverage)
 
-GITHUB: github.com/yourusername/signal-gtm
-LIVE DEMO: signal.yourdomain.com
+GITHUB: https://github.com/sahilpashine/Signal/
+LIVE DEMO: https://signalgtm-bvfgxbkx.manus.space/
