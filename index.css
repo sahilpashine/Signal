@@ -1,0 +1,120 @@
+}
+
+/* Signal uses a single dark theme — no .dark override needed */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+/* ===== Signal Custom Utilities ===== */
+
+.text-gradient {
+  background: linear-gradient(135deg, oklch(0.78 0.20 270), oklch(0.72 0.18 55));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, oklch(0.80 0.22 270), oklch(0.65 0.25 290));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-purple {
+  box-shadow: 0 0 40px oklch(0.62 0.22 270 / 0.25), 0 0 80px oklch(0.62 0.22 270 / 0.10);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px oklch(0.72 0.18 55 / 0.30);
+}
+
+.glass {
+  background: oklch(0.14 0.018 260 / 0.80);
+  backdrop-filter: blur(16px);
+  border: 1px solid oklch(0.30 0.025 260 / 0.50);
+}
+
+.glass-light {
+  background: oklch(0.18 0.022 260 / 0.60);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.35 0.025 260 / 0.40);
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, oklch(0.75 0.20 270), oklch(0.72 0.18 55), oklch(0.75 0.20 270));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.62 0.22 270 / 0.2); }
+  50% { box-shadow: 0 0 40px oklch(0.62 0.22 270 / 0.4), 0 0 80px oklch(0.62 0.22 270 / 0.15); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.6s ease-out forwards; }
+.animate-fade-in { animation: fade-in 0.5s ease-out forwards; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: oklch(0.12 0.018 260); }
+::-webkit-scrollbar-thumb { background: oklch(0.30 0.030 260); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.40 0.040 260); }
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
